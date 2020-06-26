@@ -60,6 +60,47 @@ export class UserBusiness {
     return { accessToken };
   }
 
+  public async signupAdmin(
+    name: string,
+    nickname: string,
+    email: string,
+    password: string,
+    token: string
+  ) {
+
+    if (!name || !nickname || !email || !password) {
+      throw new InvalidParameterError("Missing input");
+    }
+
+    if (email.indexOf("@") === -1) {
+      throw new InvalidParameterError("Invalid email");
+    }
+
+    if (password.length < 10) {
+      throw new InvalidParameterError("Invalid password");
+    }
+
+    const checkUserExists = await this.userDatabase.getUserByEmailOrNickname(email, nickname)
+
+    if(checkUserExists) {
+      throw new ConflitError("User already registered")
+    }
+
+    if (this.tokenGenerator.verify(token).role !== UserRole.ADMIN) {
+      throw new UnauthorizedError("You must be an admin to access this information");
+    }
+
+    const id = this.idGenerator.generate();
+  
+    const cryptedPassword = await this.hashGenerator.hash(password);
+
+    const user = new User(id, name, nickname, email, cryptedPassword, UserRole.ADMIN)
+
+    await this.userDatabase.createUser(user);
+
+    return user
+  }
+
   public async login(nickname: string, email: string, password: string) {
 
     if (!(email || nickname) && !password) {
