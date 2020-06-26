@@ -31,4 +31,12 @@ export class GenreDatabase extends BaseDataBase {
 
         return this.toModel(result[0][0])
     }
+
+    public async getAllGenres(): Promise<Genre[]> {
+        const result = await super.getConnection().raw(`
+            SELECT * FROM ${this.tableName} 
+        `)
+        
+        return result[0]
+    }
 }
