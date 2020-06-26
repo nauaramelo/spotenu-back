@@ -1,0 +1,35 @@
+CREATE TABLE SpotenuUsers(
+id VARCHAR(255) PRIMARY KEY,
+name VARCHAR(255) NOT NULL, 
+nickname VARCHAR(255) NOT NULL UNIQUE,
+email VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+role VARCHAR(255) NOT NULL, 
+is_active INT,
+description TEXT 
+);
+
+CREATE TABLE SpotenuMusics(
+id VARCHAR(255) NOT NULL PRIMARY KEY,
+name VARCHAR(255) NOT NULL UNIQUE,
+id_album VARCHAR(255) NOT NULL,
+FOREIGN KEY (id_album) REFERENCES SpotenuAlbums(id)
+);
+
+CREATE TABLE SpotenuAlbumsGenres(
+id_albums VARCHAR(255) NOT NULL,
+id_genres VARCHAR(255) NOT NULL,
+FOREIGN KEY (id_albums) REFERENCES SpotenuAlbums(id),
+FOREIGN KEY (id_genres) REFERENCES SpotenuGenres(id)
+);
+
+CREATE TABLE SpotenuAlbums(
+id VARCHAR(255) PRIMARY KEY,
+name VARCHAR(255) NOT NULL UNIQUE,
+id_band VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE SpotenuGenres(
+id VARCHAR(255) PRIMARY KEY,
+name VARCHAR(255) NOT NULL UNIQUE,
+);
