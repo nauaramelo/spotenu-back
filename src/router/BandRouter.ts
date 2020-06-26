@@ -4,4 +4,4 @@ import { BandController } from "../controller/BandController";
 
 export const bandRouter = express.Router();
 
-bandRouter.post("/signup-band", new BandController().signupUserBand);
+bandRouter.post("/signup", new BandController().signupUserBand);
