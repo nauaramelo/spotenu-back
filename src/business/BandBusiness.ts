@@ -48,6 +48,7 @@ export class BandBusiness {
         await this.bandDatabase.createUserBand(userBand);
     
         return userBand
+        //Mudar esse retorno
       }
 
     public async getAllBands(): Promise<ResultBand[]> {

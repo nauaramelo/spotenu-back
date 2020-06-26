@@ -24,7 +24,7 @@ export class BandController {
         
       );
 
-      res.status(200).send(result)
+      res.status(200).send({message: "Banda cadastrada!"})
 
     } catch (err) {
       res.status(err.errorCode || 400).send({ message: err.message });
