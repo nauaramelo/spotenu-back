@@ -1,12 +1,14 @@
-
 import express from "express";
 import {AddressInfo} from "net";
+import { userRouter } from "./router/UserRouter";
+import { bandRouter } from "./router/BandRouter";
 
 const app = express();
 
 app.use(express.json());
 
-
+app.use("/users/", userRouter);
+app.use("/bands/", bandRouter);
 
 const server = app.listen(3000, () => {
   if (server) {
