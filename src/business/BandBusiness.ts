@@ -3,6 +3,9 @@ import { Band } from "../model/Band";
 import { IdGenerator } from "../services/idGenerator";
 import { HashGenerator } from "../services/hashGenerator";
 import { InvalidParameterError } from "../errors/InvalidParameterError";
+import { NotFoundError } from "../errors/NotFoundError";
+import { GenericError } from "../errors/GenericError";
+import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { TokenGenerator } from "../services/tokenGenerator";
 import { UserRole } from "../model/User";
 
@@ -69,4 +72,22 @@ export class BandBusiness {
 
     return band?.getIsActive() === true;
   }
+
+  public async approveBand(id: string, token: string) {
+    const band = await this.bandDatabase.getBandById(id);
+
+    if (!band) {
+        throw new NotFoundError("Band not found");
+    }
+
+    if (band.getIsActive()) {
+        throw new GenericError("This band is already approved")
+    }
+
+    if (this.tokenGenerator.verify(token).role !== UserRole.ADMIN) {
+        throw new UnauthorizedError("You must be an admin to access this information");
+    }
+    
+    await this.bandDatabase.approveBand(id);
+}
 }
