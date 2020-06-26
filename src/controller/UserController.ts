@@ -32,6 +32,22 @@ export class UserController {
     }
   }
 
+  public async signupAdmin(req: Request, res: Response) {
+    try {
+      const result = await UserController.UserBusiness.signupAdmin(
+        req.body.name,
+        req.body.nickname,
+        req.body.email,
+        req.body.password,
+        req.headers.authorization as string
+      );
+
+      res.status(200).send({message: "Registered Administrator"});
+
+    } catch (err) {
+      res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  } 
   public async login(req: Request, res: Response) {
     const nickname = req.body.nickname;
     const email = req.body.email;
