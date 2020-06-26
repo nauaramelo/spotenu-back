@@ -53,4 +53,10 @@ export class BandDatabase extends UserDatabase {
 
     return this.toModel(result[0][0])
   }
+
+  public async approveBand(id: string):Promise<void> {
+    await super.getConnection().raw(`
+      UPDATE ${this.tableName} SET is_active = ${this.convertBooleanToTinyint(true)} WHERE id = '${id}'
+    `)
+  }
 }

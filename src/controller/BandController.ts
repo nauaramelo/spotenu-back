@@ -41,4 +41,17 @@ export class BandController {
     }
   }
 
+  public async aprroveBand(req: Request, res: Response) {
+    try {
+      const id = req.params.id 
+      const token = req.headers.authorization as string
+
+      const result = await BandController.BandBusiness.approveBand(id, token);
+
+      res.status(200).send({ message: "Aproved band"})
+    } catch (err) {
+      res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  }
+
 }
