@@ -31,4 +31,14 @@ export class BandController {
     }
   }
 
+  public async getAllBands(req: Request, res: Response) {
+    try {
+      const bands = await BandController.BandBusiness.getAllBands();
+
+      res.status(200).send({ bands })
+    } catch (err) {
+      res.status(err.errorCode || 400).send({ message: err.message });
+    }
+  }
+
 }
