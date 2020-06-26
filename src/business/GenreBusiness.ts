@@ -33,4 +33,17 @@ export class GenreBusiness {
 
         return genre
     }
+
+    public async getGenres(token: string): Promise<Genre[]> {
+
+        const role = this.tokenGenerator.verify(token).role
+
+        if (role !== UserRole.ADMIN && role !== UserRole.BAND) {
+            throw new UnauthorizedError("You must be an admin to access this information");
+        }
+
+        const genres = await this.genreDatabase.getAllGenres();
+        
+        return genres
+    }
 }
