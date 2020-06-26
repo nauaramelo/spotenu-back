@@ -1,0 +1,3 @@
+interface GenreInterface {
+    id: string;
+}

@@ -23,4 +23,16 @@ export class GenreController {
             res.status(err.errorCode || 400).send({ message: err.message });
         }
     }
+
+    public async getGenre(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization as string
+
+            const genres = await GenreController.GenreBusiness.getGenres(token)
+
+            res.status(200).send({genres})
+        } catch (err) {
+            res.status(err.errorCode || 400).send({ message: err.message });
+        }
+    }
 }
