@@ -60,6 +60,7 @@ export class BandBusiness {
 
   private toInterfaceResultBand(band: Band): ResultBand {
     return {
+      id: band.getId() as string,
       name: band.getName() as string,
       nickname: band.getNickname() as string,
       email: band.getEmail() as string,
