@@ -57,7 +57,7 @@ export class UserBusiness {
       role,
     });
 
-    return { accessToken };
+    return { accessToken, role };
   }
 
   public async signupAdmin(
@@ -67,7 +67,7 @@ export class UserBusiness {
     password: string,
     token: string
   ) {
-
+    
     if (!name || !nickname || !email || !password) {
       throw new InvalidParameterError("Missing input");
     }
@@ -82,7 +82,8 @@ export class UserBusiness {
 
     const checkUserExists = await this.userDatabase.getUserByEmailOrNickname(email, nickname)
 
-    if(checkUserExists) {
+    if (checkUserExists) {
+
       throw new ConflitError("User already registered")
     }
 
@@ -101,13 +102,13 @@ export class UserBusiness {
     return user
   }
 
-  public async login(nickname: string, email: string, password: string) {
+  public async login(nicknameOrEmail: string, password: string) {
 
-    if (!(email || nickname) && !password) {
+    if (!nicknameOrEmail || !password) {
       throw new InvalidParameterError("Missing input");
     }
   
-    const user = await this.userDatabase.getUserByEmailOrNickname(email, nickname);
+    const user = await this.userDatabase.getUserByEmailOrNickname(nicknameOrEmail, nicknameOrEmail);
 
     if (!user) {
       throw new NotFoundError("User not found");
@@ -131,6 +132,6 @@ export class UserBusiness {
       role: user.getRole() as UserRole,
     });
 
-    return { accessToken };
+    return { accessToken, role: user.getRole() };
   }
 }

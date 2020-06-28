@@ -25,4 +25,16 @@ export class AlbumController {
             res.status(err.errorCode || 400).send({ message: err.message });
         }
     }
+
+    public async getAlbums(req: Request, res: Response) {
+        try {
+            const token = req.headers.authorization as string
+
+            const albums = await AlbumController.AlbumBusiness.getAlbums(token)
+
+            res.status(200).send({albums})
+        } catch (err) {
+            res.status(err.errorCode || 400).send({ message: err.message });
+        }
+    }
 }

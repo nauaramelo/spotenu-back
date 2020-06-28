@@ -17,7 +17,7 @@ export class AlbumBusiness {
         private idGenerator: IdGenerator
     ) {}
 
-    public async addAlbum(name: string, genres: GenreInterface[], token: string) {
+    public async addAlbum(name: string, genres: string[], token: string) {
         const id = this.idGenerator.generate();
         const payload = this.tokenGenerator.verify(token)
 
@@ -29,7 +29,7 @@ export class AlbumBusiness {
             throw new UnauthorizedError("You must be an band to access this information");
         }
 
-        const album = new Album(id, name, genres.map((genre) => new Genre(genre.id)), new Band(payload.id));
+        const album = new Album(id, name, genres.map((genre) => new Genre(genre)), new Band(payload.id));
 
         await this.albumDatabase.createAlbum(album)
 
@@ -41,4 +41,18 @@ export class AlbumBusiness {
     public async getById(id: string) {
         return await this.albumDatabase.findById(id)
     }
+
+    public async getAlbums(token: string): Promise<Album[]> {
+
+        const role = this.tokenGenerator.verify(token).role
+
+        if (role !== UserRole.ADMIN && role !== UserRole.BAND) {
+            throw new UnauthorizedError("You must be an band to access this information");
+        }
+
+        const albums = await this.albumDatabase.getAllAlbums();
+        
+        return albums
+    }
 }
+
