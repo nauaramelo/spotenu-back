@@ -34,4 +34,12 @@ export class AlbumDatabase extends BaseDataBase {
 
         return this.toModel(result[0][0]) as Album
     }
+
+    public async getAllAlbums(): Promise<Album[]> {
+        const result = await super.getConnection().raw(`
+            SELECT * FROM ${this.tableName} 
+        `)
+        
+        return result[0]
+    }
 }
