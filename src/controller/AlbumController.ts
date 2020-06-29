@@ -15,7 +15,7 @@ export class AlbumController {
 
     public async addGenre(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
+            const token = req.headers.authorization || req.headers.Authorization  as string
 
             const album = await AlbumController.AlbumBusiness.addAlbum(req.body.name, req.body.genres, token)
 
@@ -28,7 +28,7 @@ export class AlbumController {
 
     public async getAlbums(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
+            const token = req.headers.authorization || req.headers.Authorization as string
 
             const albums = await AlbumController.AlbumBusiness.getAlbums(token)
 

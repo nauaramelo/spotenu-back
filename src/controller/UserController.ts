@@ -39,7 +39,7 @@ export class UserController {
         req.body.nickname,
         req.body.email,
         req.body.password,
-        req.headers.authorization as string
+        req.headers.authorization || req.headers.Authorization as string
       );
 
       res.status(200).send({message: "Registered Administrator"});
