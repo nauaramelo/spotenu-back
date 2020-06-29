@@ -13,7 +13,7 @@ export class MusicController {
 
     public async addMusic(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
+            const token = req.headers.authorization || req.headers.Authorization as string
 
             await MusicController.MusicBusiness.createMusic(req.body.name, req.body.idAlbum, token)
 

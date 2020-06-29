@@ -13,7 +13,7 @@ export class GenreController {
 
     public async addGenre(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
+            const token = req.headers.authorization || req.headers.Authorization as string
 
             const genre = await GenreController.GenreBusiness.addGenre(req.body.name, token)
 
@@ -26,7 +26,7 @@ export class GenreController {
 
     public async getGenre(req: Request, res: Response) {
         try {
-            const token = req.headers.authorization as string
+            const token = req.headers.authorization || req.headers.Authorization as string
 
             const genres = await GenreController.GenreBusiness.getGenres(token)
 

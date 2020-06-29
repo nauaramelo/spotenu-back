@@ -7,7 +7,6 @@ import { albumRouter } from "./router/AlbumRouter";
 import { musicRouter } from "./router/MusicRouter";
 
 const app = express();
-
 app.use(express.json());
 
 app.use("/users/", userRouter);
@@ -16,6 +15,8 @@ app.use("/genres", genreRouter);
 app.use("/albums", albumRouter);
 app.use("/musics", musicRouter);
 
+export default app;
+/* 
 const server = app.listen(3001, () => {
   if (server) {
     const address = server.address() as AddressInfo;
@@ -23,4 +24,4 @@ const server = app.listen(3001, () => {
   } else {
     console.error(`Falha ao rodar o servidor.`);
   }
-});
+}); */
