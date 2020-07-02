@@ -109,4 +109,13 @@ Para se logar, o usuário músico pode fornecer o email ou o nickname (junto com
 - [lbn-lambda-express](https://www.npmjs.com/package/lbn-lambda-express)
 - [bestzip](https://www.npmjs.com/package/bestzip)
 
+## Desenvolvido Port :octocat:
 
+| [<img src="https://user-images.githubusercontent.com/59856574/86283681-d11d7780-bbb7-11ea-90a5-9312ee67cdec.jpg" width=115><br><sub>Nauara Melo</sub>](https://www.linkedin.com/in/nauara-melo-mayer-464a82135/) | 
+| :---: |
+
+## Licença 
+
+[MIT License](https://opensource.org/licenses/MIT)
+
+Copyright :copyright: 2020 - Spotenu
