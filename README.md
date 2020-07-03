@@ -87,6 +87,13 @@ Para se logar, o usuário músico pode fornecer o email ou o nickname (junto com
 - Criação de álbuns
 - Criação de músicas
 
+## Deploy
+
+<p align="justify">
+  O deploy do projeto foi realizado na AWS e encontra-se disponivel em: https://3svx0co8ii.execute-api.us-east-1.amazonaws.com/V1
+</p>
+
+
 ## Pré-requisitos
 
 :warning: [Node](https://nodejs.org/en/download/)
