@@ -95,6 +95,29 @@ Para se logar, o usuário músico pode fornecer o email ou o nickname (junto com
 
 ## Como rodar a aplicação :arrow_forward:
 
+No terminal, clone o projeto: 
+
+```
+git clone https://github.com/nauaramelo/spotenu-back.git
+```
+Entre no projeto e instale as dependências através do comando:
+```
+npm install
+```
+Suba a aplicação: 
+```
+npm start
+```
+Por último, crie um arquivo .env na raiz do projeto com as seguintes variáveis:
+```
+DB_HOST = 
+DB_PORT = 
+DB_USER = 
+DB_PASSWORD = 
+DB_DATABASE_NAME = 
+JWT_KEY = 
+```
+
 ## Linguagens, dependencias e libs utilizadas :books:
 
 - [Node](https://nodejs.org/en/)
@@ -109,7 +132,7 @@ Para se logar, o usuário músico pode fornecer o email ou o nickname (junto com
 - [lbn-lambda-express](https://www.npmjs.com/package/lbn-lambda-express)
 - [bestzip](https://www.npmjs.com/package/bestzip)
 
-## Desenvolvido Port :octocat:
+## Desenvolvido Por :octocat:
 
 | [<img src="https://user-images.githubusercontent.com/59856574/86283681-d11d7780-bbb7-11ea-90a5-9312ee67cdec.jpg" width=115><br><sub>Nauara Melo</sub>](https://www.linkedin.com/in/nauara-melo-mayer-464a82135/) | 
 | :---: |
