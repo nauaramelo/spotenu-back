@@ -1,5 +1,4 @@
 import express from "express";
-import {AddressInfo} from "net";
 import { userRouter } from "./router/UserRouter";
 import { bandRouter } from "./router/BandRouter";
 import { genreRouter } from "./router/GenreRouter";
